@@ -5,7 +5,7 @@ Our raw data holds almost 1 year of Bitcoin prices per minute (closing, opening,
 We optimized the hyperparameters of the model using Optuna.
 
 Model's prediction on the test set:
-![alt text](https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/master/images/Test Prediction.png)
+![alt text](https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/807cf11e7ecd7c7f92c11c264daa2eb19c9a4bec/images/Test_Prediction.png)
 ### Based on the paper "Combining Sketch and Tone for Pencil Drawing Production" by Cewu Lu, Li Xu, Jiaya Jia
 #### International Symposium on Non-Photorealistic Animation and Rendering (NPAR 2012), June 2012
 Project site can be found here:
