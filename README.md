@@ -38,9 +38,10 @@ We are using Bitcoin historical one-minute records start from (UTC+8): 2021-01-0
 We got it from: https://www.kaggle.com/aipeli/btcusdt and it can also be found in our repository [here](https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/data/okex_btcusdt_kline_1m.csv.zip).
 
 The data contains 5 features: opening price, highest price, lowest price, closing price and volume of transactions per minute.
-We calculated the correlations between the featurs and noticed that the first 4 (the prices) are very corralated between themselves. So we wanted to add more meaningfull features to the data before handing it to the model. For that we used FinTA 
+We calculated the correlations between the featurs and noticed that the first 4 (the prices) are high-corralated between themselves. So we wanted to add more meaningfull features to the data before handing it to the model. For that we used [FinTA](https://github.com/peerchemist/finta) which implements common financial technical indicators in Pandas. We chose only the features which are low-correlated to all others, and made sure they all use only past samples (so we won't accidently use the future). After choosing them we cleaned it from NaNs and ended up with a total of 34 features and 488029 samples (lost the first 131 samples).
 
-Instead of feeding these raw features to the model, we used [FinTA](https://github.com/peerchemist/finta) in order to have more sophisticated features that are used by traders to try and manually predict stocks' future.
+After that we splitted the data into train(80%), validation(10%) and test(10%), in chronological order as can be seen here:
+![alt text](https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/images/Data_Separation.png)
 
 After having these features we divided the mentioned 17k minutes into chronologically ordered train, validation and test sets of ~12k, ~3.5k and ~1.5k respectively. 
 
