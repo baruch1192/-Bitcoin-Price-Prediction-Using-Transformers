@@ -61,13 +61,46 @@ Both kinds of features are concatanated to the existing ones creating a total of
 The linear layer before the output is used to output the same number of features as the target - `in_features`.
 
 The full model:
+<p align="center">
+  <img src="https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/images/full_model.jpeg" />
+</p>
 
-<center>![alt text](https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/images/full_model.jpeg)</center>
+![alt text](https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/images/full_model.jpeg)
 
 
+# Parameters
+* kernel_size = size of the line segement kernel (usually 1/30 of the height/width of the original image)
+* stroke_width = thickness of the strokes in the Stroke Map (0, 1, 2)
+* num_of_directions = stroke directions in the Stroke Map (used for the kernels)
+* smooth_kernel = how the image is smoothed (Gaussian Kernel - "gauss", Median Filter - "median")
+* gradient_method = how the gradients for the Stroke Map are calculated (0 - forward gradient, 1 - Sobel)
+* rgb = True if the original image has 3 channels, False if grayscale
+* w_group = 3 possible weight groups (0, 1, 2) for the histogram distribution, according to the paper (brighter to darker)
+* pencil_texture_path = path to the Pencil Texture Map to use (4 options in "./pencils", you can add your own)
+* stroke_darkness = 1 is the same, up is darker.
+* tone_darkness = as above
 
-
-
+* num_features = 8
+* scaler = pp.StandardScaler()
+* train_batch_size = 32
+* eval_batch_size = 32
+* epochs = 50
+* bptt_src = 40
+* bptt_tgt = 20
+* overlap = 1
+* num_encoder_layers = 8
+* num_decoder_layers = 8
+* in_features = num_features
+* periodic_features = 4
+* out_features = 16 # must be greater or equal to (in_features + periodic_features)
+* nhead = 4 
+* dim_feedforward = 384
+* dropout = 0.0
+* clip_param = 0.5
+* activation = 'relu'
+* criterion = nn.MSELoss()
+* lr = 0.5
+* log_interval = 100
 
 https://towardsdatascience.com/stock-predictions-with-state-of-the-art-transformer-and-time-embeddings-3a4485237de6
 
