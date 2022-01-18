@@ -95,22 +95,26 @@ For every hyperparameter we chose the range of which we wanted to optimize over.
 
 The hyperparameter chosen:
 
+|File name    | Value |
+|-------------|------|
+|`hidden_dim`| 93 |
+|`num_layers`| 2 |
+|`num_epochs`| 123 |
+|`dropout_p`| 0.12 |
+|`lr`| 0.004 |
+|`bs`| 415 |
+|`bptt`| 16 |
+|`Optimizer`| Adam |
+
+The impact of the hyperparameters on the loss is visualized here: 
+
 <p align="center">
   <img src="https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/images/optuna_results.jpeg" />
 </p>
 
 As mentioned, all of the following hyperparameters were found by Optuna and the analysis can be found in `Optuna Optimization - CGEN.ipynb` :
 
-|File name    | Purpose     | Value |
-|-------------|---------|------|
-|`hidden_dim`| size of LSTM hidden dimension | 93 |
-|`num_layers`| number of LSTM layers | 2 |
-|`num_epochs`| number of epochs | 123 |
-|`dropout_p`| probability of dropout | 0.12 |
-|`lr`| learning rate | 0.004 |
-|`bs`| batch size | 415 |
-|`bptt`| length of sequence in an iteration (in minutes) | 16 |
-|`Optimizer`| kind of gradient-based optimizer to use | Adam |
+
 
 
 
