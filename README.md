@@ -25,7 +25,7 @@ Bitcoin prediction using RNN:
 
 &emsp; https://www.kaggle.com/muharremyasar/btc-historical-with-rnn
 
-IBM stock price prediction using Tranformer-Encoder:
+IBM stock price prediction using Transformer-Encoder:
 
 &emsp; https://github.com/roeeben/Stock-Price-Prediction-With-a-Bot/blob/main/README.md
 
@@ -40,7 +40,7 @@ We got it from: https://www.kaggle.com/aipeli/btcusdt and it can also be found i
 The data contains 5 features: the opening price, highest price, lowest price, closing price, and volume of transactions per minute.
 We calculated the correlations between the features and noticed that the first 4 (the prices) are high-correlated between themselves. So we wanted to add more meaningful features to the data before handing it to the model. For that, we used [FinTA](https://github.com/peerchemist/finta) which implements common financial technical indicators in Pandas. We chose only the features which are low-correlated to all others and made sure they all use only past samples (so we won't accidentally use the future). After choosing them we cleaned it from NaNs and ended up with a total of 34 features and 488029 samples (lost the first 131 samples).
 
-After that we splitted the data into train(80%), validation(10%) and test(10%), in chronological order as can be seen here:
+After that we splitted the data into train (80%), validation (10%) and test (10%), in chronological order as can be seen here:
 
 ![alt text](https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/images/Data_Separation.png)
 
@@ -49,7 +49,23 @@ Then the train data is being scaled, and the validation and test datasets are sc
 Finally, we divide the train set into tensors of large sequential batches. During the training, we will sample from each batch a sequence of bptt_src to use as source and a sequence of bptt_tgt to use as target. In each epoch, we start to sample from a random start point to create more diverse data.
 
 
+## Architecture
+We used PyTorch nn.Transformer as the basis of our model. Before both encoder and decoder we entered time embedding layer and in the output of the decoder a linear one.
 
+In the time embedding layer we add more features to the data in 2 ways:
+1. Periodic features implemented as a linear layer followed by sin activation.
+2. Linear features implemented as a linear layer.
+
+Both kinds of features are concatanated to the existing ones creating a total of out_features at the output.
+
+The linear layer before the output is used to output the same shape as the target.
+
+https://towardsdatascience.com/stock-predictions-with-state-of-the-art-transformer-and-time-embeddings-3a4485237de6
+
+
+The model was written in a general fashion: we set all of his layers size, aswell as the mentioned `bptt` and `batch_size` as variables and proceeded to use [Optuna](https://github.com/optuna/optuna) to optimize over the validation loss.
+
+This loss, aswell as the training loss, was defined as the MSE between the LSTM's prediction of a minute and the closing price of the next minute, which is of course what we're trying to predict.
 
 ### Based on the paper "Combining Sketch and Tone for Pencil Drawing Production" by Cewu Lu, Li Xu, Jiaya Jia
 #### International Symposium on Non-Photorealistic Animation and Rendering (NPAR 2012), June 2012
