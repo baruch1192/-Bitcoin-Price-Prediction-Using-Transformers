@@ -27,13 +27,16 @@ Bitcoin prediction using RNN:
 
 IBM stock price prediction using Tranformer-Encoder:
 
-   https://github.com/roeeben/Stock-Price-Prediction-With-a-Bot/blob/main/README.md
+&emsp; https://github.com/roeeben/Stock-Price-Prediction-With-a-Bot/blob/main/README.md
 
 Short term stock price prediction using LSTM with a simple trading bot:
 
-   https://github.com/JanSchm/CapMarket/blob/master/bot_experiments/IBM_Transformer%2BTimeEmbedding.ipynb
+&emsp; https://github.com/JanSchm/CapMarket/blob/master/bot_experiments/IBM_Transformer%2BTimeEmbedding.ipynb
 
 ## Data
+We are using Bitcoin historical one-minute records start from (UTC+8): 2021-01-01 00:00:00 until (UTC+8): 2021-12-05 23:59:00, containing 488,160 records from Okex Excahnge.
+We got it from: https://www.kaggle.com/aipeli/btcusdt and it can also be found in our repository: https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/data/okex_btcusdt_kline_1m.csv.zip
+
 We got our hands on a dataset that involves a couple of months of the CGEN stock that's divided for single minutes, with a total of 17,000 minutes.
 More specifically, we used the closing price and the volume of each minute.
 
