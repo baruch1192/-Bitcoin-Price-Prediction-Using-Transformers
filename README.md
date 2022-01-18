@@ -41,6 +41,7 @@ The data contains 5 features: the opening price, highest price, lowest price, cl
 We calculated the correlations between the features and noticed that the first 4 (the prices) are high-correlated between themselves. So we wanted to add more meaningful features to the data before handing it to the model. For that, we used [FinTA](https://github.com/peerchemist/finta) which implements common financial technical indicators in Pandas. We chose only the features which are low-correlated to all others and made sure they all use only past samples (so we won't accidentally use the future). After choosing them we cleaned it from NaNs and ended up with a total of 34 features and 488029 samples (lost the first 131 samples).
 
 After that we splitted the data into train(80%), validation(10%) and test(10%), in chronological order as can be seen here:
+
 ![alt text](https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/images/Data_Separation.png)
 
 Then the train data is being scaled, and the validation and test datasets are scaled accordingly. 
