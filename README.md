@@ -63,7 +63,7 @@ The linear layer before the output is used to output the same number of features
 
 The full model:
 <p align="center">
-  <img src="https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/images/full_model.jpeg" width="555"/>
+  <img src="https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/images/full_model.jpeg" width="450"/>
 </p>
 
 
@@ -95,7 +95,7 @@ For every hyperparameter we chose the range of which we wanted to optimize over.
 
 The hyperparameter chosen:
 
-<p align="center">
+<center>
 
 |File name    | Value |
 |-------------|------|
@@ -108,7 +108,7 @@ The hyperparameter chosen:
 |`bptt`| 16 |
 |`Optimizer`| Adam |
 
-</p>
+</center>
  
 The impact of the hyperparameters on the loss is visualized here: 
 
