@@ -1,6 +1,8 @@
 # <center>Bitcoin Price Prediction Using Transformers</center>
 
-In this project we used Transformers architecture to predict Bitcoin value 20 minuts into the future 
+In this project we used Transformers architecture - encoder-decoder, to predict Bitcoin value into a chosen future horizon. 
+Our raw data holds almost 1 year of Bitcoin prices per minute (closing, opening, etc.). We extarcted more statistics out of the data using common financial technical indicators, Finta, while making sure they are low correlated between them. We then fed the model with the data, and trained it to predict the chosen future horizon based on past values.
+We optimized the hyperparameters of the model using Optuna
 
 
 
