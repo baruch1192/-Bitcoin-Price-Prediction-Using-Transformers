@@ -67,24 +67,24 @@ The full model:
 
 
 # Parameters
-* num_features = number of features to chose from the full set (1 - 34)
-* scaler = the kind of scaler to use to scale the data (Standard Scaler - 'standard', Min Max Scaler - 'minmax')
-* train_batch_size = size of train batch
-* eval_batch_size = size of validation/test batch 
-* epochs = number of epochs to run the training
-* bptt_src = the length of the source sequence
-* bptt_tgt = the length of the target sequence
-* overlap = number of overlapping samples between the source and the target
-* num_encoder_layers = number of enconder layers in the transformer 
-* num_decoder_layers = number of decoder layers in the transformer 
-* periodic_features = number of periodic features to add in the time embedding layer
-* out_features = number of output feature after the time embedding layer (> in_features + periodic_features)
-* nhead = number of heads in the multihead attention layers in the transformer (both encoder and decoder, must be a divider of out_features)
-* dim_feedforward = dimension of the feed forward layers in the transformer (both encoder and decoder)
-* dropout = the dropout probability of the dropout layers in the model
-* clip_param = the max norm of the gradients in the clip_grad_norm layer
-* activation = activation function to use in the transformer (ReLU - 'relu', GeLU - 'gelu')
-* lr = starting learning rate 
+* `num_features` = number of features to chose from the full set (1 - 34)
+* `scaler` = the kind of scaler to use to scale the data (Standard Scaler - 'standard', Min Max Scaler - 'minmax')
+* `train_batch_size` = size of train batch
+* `eval_batch_size` = size of validation/test batch 
+* `epochs` = number of epochs to run the training
+* `bptt_src` = the length of the source sequence
+* `bptt_tgt` = the length of the target sequence
+* `overlap` = number of overlapping samples between the source and the target
+* `num_encoder_layers` = number of enconder layers in the transformer 
+* `num_decoder_layers` = number of decoder layers in the transformer 
+* `periodic_features` = number of periodic features to add in the time embedding layer
+* `out_features` = number of output feature after the time embedding layer (> in_features + periodic_features)
+* `nhead` = number of heads in the multihead attention layers in the transformer (both encoder and decoder, must be a divider of out_features)
+* `dim_feedforward` = dimension of the feed forward layers in the transformer (both encoder and decoder)
+* `dropout` = the dropout probability of the dropout layers in the model
+* `clip_param` = the max norm of the gradients in the clip_grad_norm layer
+* `activation` = activation function to use in the transformer (ReLU - 'relu', GeLU - 'gelu')
+* `lr` = starting learning rate 
 
 https://towardsdatascience.com/stock-predictions-with-state-of-the-art-transformer-and-time-embeddings-3a4485237de6
 
