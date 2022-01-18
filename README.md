@@ -9,7 +9,7 @@ Model's prediction on the test set:
 
 - [Bitcoin Price Prediction Using Transformers](#Bitcoin-Price-Prediction-Using-Transformers)
   * [Previous Work](#Previous-Work)
-  * [Data](#Data)
+  * [Data Proccessing](#Data-Proccessing)
   * [Architecture](#Architecture)
   * [Parameters](#Parameters)
   * [Optuna](#Optuna)
@@ -33,12 +33,12 @@ Short term stock price prediction using LSTM with a simple trading bot:
 
 &emsp; https://github.com/JanSchm/CapMarket/blob/master/bot_experiments/IBM_Transformer%2BTimeEmbedding.ipynb
 
-## Data
+## Data Proccessing
 We are using Bitcoin historical one-minute records start from (UTC+8): 2021-01-01 00:00:00 until (UTC+8): 2021-12-05 23:59:00, containing 488,160 records from Okex Excahnge.
-We got it from: https://www.kaggle.com/aipeli/btcusdt and it can also be found in our repository: https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/data/okex_btcusdt_kline_1m.csv.zip
+We got it from: https://www.kaggle.com/aipeli/btcusdt and it can also be found in our repository [here](https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/data/okex_btcusdt_kline_1m.csv.zip).
 
-We got our hands on a dataset that involves a couple of months of the CGEN stock that's divided for single minutes, with a total of 17,000 minutes.
-More specifically, we used the closing price and the volume of each minute.
+The data contains 5 features: opening price, highest price, lowest price, closing price and volume of transactions per minute.
+We calculated the correlations between the featurs and noticed that the first 4 (the prices) are very corralated between themselves. So we wanted to add more meaningfull features to the data before handing it to the model. For that we used FinTA 
 
 Instead of feeding these raw features to the model, we used [FinTA](https://github.com/peerchemist/finta) in order to have more sophisticated features that are used by traders to try and manually predict stocks' future.
 
