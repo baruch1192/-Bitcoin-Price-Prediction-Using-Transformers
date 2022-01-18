@@ -23,15 +23,15 @@ Model's prediction on the test set:
 ## Previous Work
 Bitcoin prediction using RNN:
 
-https://www.kaggle.com/muharremyasar/btc-historical-with-rnn
+   https://www.kaggle.com/muharremyasar/btc-historical-with-rnn
 
 IBM stock price prediction using Tranformer-Encoder:
 
-https://github.com/roeeben/Stock-Price-Prediction-With-a-Bot/blob/main/README.md
+   https://github.com/roeeben/Stock-Price-Prediction-With-a-Bot/blob/main/README.md
 
 Short term stock price prediction using LSTM with a simple trading bot:
 
-https://github.com/JanSchm/CapMarket/blob/master/bot_experiments/IBM_Transformer%2BTimeEmbedding.ipynb
+   https://github.com/JanSchm/CapMarket/blob/master/bot_experiments/IBM_Transformer%2BTimeEmbedding.ipynb
 
 ## Data
 We got our hands on a dataset that involves a couple of months of the CGEN stock that's divided for single minutes, with a total of 17,000 minutes.
