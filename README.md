@@ -7,7 +7,7 @@ We optimized the hyperparameters of the model using Optuna.
 Model's prediction on the test set:
 ![alt text](https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/images/Test_Prediction.png)
 
-- [Short Term Stock Price Prediction with a Simple Trading Bot](#-Bitcoin-Price-Prediction-Using-Transformers)
+- [Bitcoin Price Prediction Using Transformers](#Bitcoin-Price-Prediction-Using-Transformers)
   * [Data](#data)
   * [Architecture](#architecture)
   * [Optuna](#optuna)
