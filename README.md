@@ -46,19 +46,27 @@ After that we splitted the data into train (80%), validation (10%) and test (10%
 
 Then the train data is being scaled, and the validation and test datasets are scaled accordingly. 
 
-Finally, we divide the train set into tensors of large sequential batches. During the training, we will sample from each batch a sequence of bptt_src to use as source and a sequence of bptt_tgt to use as target. In each epoch, we start to sample from a random start point to create more diverse data.
+Finally, we divided the train set into tensors of large sequential batches. During the training, we will sample from each batch a sequence of `bptt_src` to use as source and a sequence of `bptt_tgt` to use as target. In each epoch, we start to sample from a random start point to create more diverse data.
 
 
 ## Architecture
 We used PyTorch nn.Transformer as the basis of our model. Before both encoder and decoder we entered time embedding layer and in the output of the decoder a linear one.
 
-In the time embedding layer we add more features to the data in 2 ways:
-1. Periodic features implemented as a linear layer followed by sin activation.
+In the time embedding layer we are implementing a version of [Time2Vec](https://arxiv.org/pdf/1907.05321.pdf). We added more features to the data in 2 ways:
+1. Periodic features implemented as a linear layer followed by sin activation - total of `periodic_features` features.
 2. Linear features implemented as a linear layer.
 
-Both kinds of features are concatanated to the existing ones creating a total of out_features at the output.
+Both kinds of features are concatanated to the existing ones creating a total of `out_features` at the output.
 
-The linear layer before the output is used to output the same shape as the target.
+The linear layer before the output is used to output the same number of features as the target - `in_features`.
+
+The full model:
+![alt text](https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/images/full_model.jpeg)
+
+
+
+
+
 
 https://towardsdatascience.com/stock-predictions-with-state-of-the-art-transformer-and-time-embeddings-3a4485237de6
 
