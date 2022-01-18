@@ -167,6 +167,15 @@ The model was written in a general fashion: we set all of his layers size, aswel
 This loss, aswell as the training loss, was defined as the MSE between the LSTM's prediction of a minute and the closing price of the next minute, which is of course what we're trying to predict.
 
 ## Optuna
+We  used Optuna in order to find the optimal hyperparameters in terms of the validation loss.
+
+For every hyperparameter we chose the range of which we wanted to optimize over. 
+
+The hyperparameter chosen:
+
+<p align="center">
+  <img src="https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/images/optuna_results.jpeg" />
+</p>
 
 As mentioned, all of the following hyperparameters were found by Optuna and the analysis can be found in `Optuna Optimization - CGEN.ipynb` :
 
