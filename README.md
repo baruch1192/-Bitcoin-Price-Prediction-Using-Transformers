@@ -65,8 +65,6 @@ The full model:
   <img src="https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/images/full_model.jpeg" />
 </p>
 
-![alt text](https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/images/full_model.jpeg)
-
 
 # Parameters
 * kernel_size = size of the line segement kernel (usually 1/30 of the height/width of the original image)
@@ -80,27 +78,24 @@ The full model:
 * stroke_darkness = 1 is the same, up is darker.
 * tone_darkness = as above
 
-* num_features = 8
-* scaler = pp.StandardScaler()
-* train_batch_size = 32
-* eval_batch_size = 32
-* epochs = 50
-* bptt_src = 40
-* bptt_tgt = 20
-* overlap = 1
-* num_encoder_layers = 8
-* num_decoder_layers = 8
-* in_features = num_features
-* periodic_features = 4
-* out_features = 16 # must be greater or equal to (in_features + periodic_features)
-* nhead = 4 
-* dim_feedforward = 384
-* dropout = 0.0
-* clip_param = 0.5
-* activation = 'relu'
-* criterion = nn.MSELoss()
-* lr = 0.5
-* log_interval = 100
+* num_features = number of features to chose from the full set (1 - 34)
+* scaler = the kind of scaler to use to scale the data (Standard Scaler - 'standard', Min Max Scaler - 'minmax')
+* train_batch_size = size of train batch
+* eval_batch_size = size of validation/test batch 
+* epochs = number of epochs to run the training
+* bptt_src = the length of the source sequence
+* bptt_tgt = the length of the target sequence
+* overlap = number of overlapping samples between the source and the target
+* num_encoder_layers = number of enconder layers in the transformer 
+* num_decoder_layers = number of decoder layers in the transformer 
+* periodic_features = number of periodic features to add in the time embedding layer
+* out_features = number of output feature after the time embedding layer (> in_features + periodic_features)
+* nhead = number of heads in the multihead attention layers in the transformer (both encoder and decoder, must be a divider of out_features)
+* dim_feedforward = dimension of the feed forward layers in the transformer (both encoder and decoder)
+* dropout = the dropout probability of the dropout layers in the model
+* clip_param = the max norm of the gradients in the clip_grad_norm layer
+* activation = activation function to use in the transformer (ReLU - 'relu', GeLU - 'gelu')
+* lr = starting learning rate 
 
 https://towardsdatascience.com/stock-predictions-with-state-of-the-art-transformer-and-time-embeddings-3a4485237de6
 
