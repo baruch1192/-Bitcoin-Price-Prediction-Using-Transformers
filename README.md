@@ -63,7 +63,7 @@ The linear layer before the output is used to output the same number of features
 
 The full model:
 <p align="center">
-  <img src="https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/images/full_model.jpeg" />
+  <img src="https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/images/full_model.jpeg" width="100"/>
 </p>
 
 
@@ -86,6 +86,33 @@ The full model:
 * `clip_param` = the max norm of the gradients in the clip_grad_norm layer
 * `activation` = activation function to use in the transformer (ReLU - 'relu', GeLU - 'gelu')
 * `lr` = starting learning rate 
+
+
+## Optuna
+We  used Optuna in order to find the optimal hyperparameters in terms of the validation loss.
+
+For every hyperparameter we chose the range of which we wanted to optimize over. 
+
+The hyperparameter chosen:
+
+<p align="center">
+  <img src="https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/images/optuna_results.jpeg" />
+</p>
+
+As mentioned, all of the following hyperparameters were found by Optuna and the analysis can be found in `Optuna Optimization - CGEN.ipynb` :
+
+|File name    | Purpose     | Value |
+|-------------|---------|------|
+|`hidden_dim`| size of LSTM hidden dimension | 93 |
+|`num_layers`| number of LSTM layers | 2 |
+|`num_epochs`| number of epochs | 123 |
+|`dropout_p`| probability of dropout | 0.12 |
+|`lr`| learning rate | 0.004 |
+|`bs`| batch size | 415 |
+|`bptt`| length of sequence in an iteration (in minutes) | 16 |
+|`Optimizer`| kind of gradient-based optimizer to use | Adam |
+
+
 
 https://towardsdatascience.com/stock-predictions-with-state-of-the-art-transformer-and-time-embeddings-3a4485237de6
 
@@ -167,29 +194,7 @@ The model was written in a general fashion: we set all of his layers size, aswel
 
 This loss, aswell as the training loss, was defined as the MSE between the LSTM's prediction of a minute and the closing price of the next minute, which is of course what we're trying to predict.
 
-## Optuna
-We  used Optuna in order to find the optimal hyperparameters in terms of the validation loss.
 
-For every hyperparameter we chose the range of which we wanted to optimize over. 
-
-The hyperparameter chosen:
-
-<p align="center">
-  <img src="https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/images/optuna_results.jpeg" />
-</p>
-
-As mentioned, all of the following hyperparameters were found by Optuna and the analysis can be found in `Optuna Optimization - CGEN.ipynb` :
-
-|File name    | Purpose     | Value |
-|-------------|---------|------|
-|`hidden_dim`| size of LSTM hidden dimension | 93 |
-|`num_layers`| number of LSTM layers | 2 |
-|`num_epochs`| number of epochs | 123 |
-|`dropout_p`| probability of dropout | 0.12 |
-|`lr`| learning rate | 0.004 |
-|`bs`| batch size | 415 |
-|`bptt`| length of sequence in an iteration (in minutes) | 16 |
-|`Optimizer`| kind of gradient-based optimizer to use | Adam |
 
 ## Bot
 After training the model and feeding the test data, we use a simple bot that tries to buy the stock before it surges and sell it before it gets down. That way, it theoretically can have a profit despite the fact that the stock eventually gets to a lower price than its starting price.
