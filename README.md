@@ -23,7 +23,7 @@ Model's prediction on the test set:
 ## Previous Work
 Bitcoin prediction using RNN:
 
-   https://www.kaggle.com/muharremyasar/btc-historical-with-rnn
+emsp https://www.kaggle.com/muharremyasar/btc-historical-with-rnn
 
 IBM stock price prediction using Tranformer-Encoder:
 
