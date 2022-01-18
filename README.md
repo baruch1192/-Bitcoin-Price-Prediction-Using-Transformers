@@ -8,7 +8,7 @@ Model's prediction on the test set:
 ![alt text](https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/images/Test_Prediction.png)
 
 - [Bitcoin Price Prediction Using Transformers](#Bitcoin-Price-Prediction-Using-Transformers)
-  * [Previous Work](#[Previous-Work)
+  * [Previous Work](#Previous-Work)
   * [Data](#Data)
   * [Architecture](#Architecture)
   * [Parameters](#Parameters)
