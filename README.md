@@ -61,9 +61,9 @@ Both kinds of features are concatanated to the existing ones creating a total of
 The linear layer before the output is used to output the same number of features as the target - `in_features`.
 
 The full model:
-<center>
-![alt text](https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/images/full_model.jpeg)
-</center>
+
+<center>![alt text](https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/images/full_model.jpeg)</center>
+
 
 
 
