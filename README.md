@@ -1,4 +1,4 @@
-# <center> Bitcoin Price Prediction Using Transformers </center>
+# <center>Bitcoin Price Prediction Using Transformers</center>
 
 In this project we used Transformers architecture to predict Bitcoin value 20 minuts into the future 
 
