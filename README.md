@@ -95,22 +95,7 @@ For every hyperparameter we chose the range of which we wanted to optimize over.
 
 The hyperparameter chosen:
 
-
-
-|:File name    :|: Value :|
-|:-------------:|:------:|
-|:`hidden_dim`:|: 93 :|
-|:`num_layers`:|: 2 :|
-|:`num_epochs`:|: 123 :|
-|:`dropout_p`:|: 0.12 :|
-|:`lr`:|: 0.004 |
-|:`bs`:|: 415 :|
-|:`bptt`:|: 16 :|
-|:`Optimizer`:|: Adam :|
-
-
- 
- 
+<div align="center"> 
 |File name    | Value |
 |:-------------:|:------:|
 |`hidden_dim`| 93 |
@@ -121,7 +106,7 @@ The hyperparameter chosen:
 |`bs`| 415 |
 |`bptt`| 16 |
 |`Optimizer`| Adam |
- 
+</div>
 The impact of the hyperparameters on the loss is visualized here: 
 
 <p align="center">
