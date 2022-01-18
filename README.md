@@ -63,7 +63,7 @@ The linear layer before the output is used to output the same number of features
 
 The full model:
 <p align="center">
-  <img src="https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/images/full_model.jpeg" width="400"/>
+  <img src="https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/images/full_model.jpeg" width="555"/>
 </p>
 
 
