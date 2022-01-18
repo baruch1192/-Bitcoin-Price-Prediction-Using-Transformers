@@ -95,6 +95,8 @@ For every hyperparameter we chose the range of which we wanted to optimize over.
 
 The hyperparameter chosen:
 
+<p align="center">
+
 |File name    | Value |
 |-------------|------|
 |`hidden_dim`| 93 |
@@ -106,6 +108,8 @@ The hyperparameter chosen:
 |`bptt`| 16 |
 |`Optimizer`| Adam |
 
+</p>
+ 
 The impact of the hyperparameters on the loss is visualized here: 
 
 <p align="center">
