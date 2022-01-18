@@ -97,16 +97,16 @@ The hyperparameter chosen:
 
 
  
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;|File name    | Value |
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;|-------------|------|
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;|`hidden_dim`| 93 |
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;|`num_layers`| 2 |
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;|`num_epochs`| 123 |
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;|`dropout_p`| 0.12 |
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;|`lr`| 0.004 |
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;|`bs`| 415 |
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;|`bptt`| 16 |
-&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;|`Optimizer`| Adam |
+|File name    | Value |
+|-------------|------|
+|`hidden_dim`| 93 |
+|`num_layers`| 2 |
+|`num_epochs`| 123 |
+|`dropout_p`| 0.12 |
+|`lr`| 0.004 |
+|`bs`| 415 |
+|`bptt`| 16 |
+|`Optimizer`| Adam |
  
 
 The impact of the hyperparameters on the loss is visualized here: 
