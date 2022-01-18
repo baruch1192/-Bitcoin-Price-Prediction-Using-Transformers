@@ -34,7 +34,7 @@ Short term stock price prediction using LSTM with a simple trading bot:
 &emsp; https://github.com/JanSchm/CapMarket/blob/master/bot_experiments/IBM_Transformer%2BTimeEmbedding.ipynb
 
 ## Data Proccessing
-We are using Bitcoin historical one-minute records start from (UTC+8): 2021-01-01 00:00:00 until (UTC+8): 2021-12-05 23:59:00, containing 488,160 records from Okex Excahnge.
+We are using Bitcoin historical one-minute records from (UTC+8): 2021-01-01 00:00:00 - 2021-12-05 23:59:00, containing 488,160 records from Okex Excahnge.
 We got it from: https://www.kaggle.com/aipeli/btcusdt and it can also be found in our repository [here](https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/data/okex_btcusdt_kline_1m.csv.zip).
 
 The data contains 5 features: opening price, highest price, lowest price, closing price and volume of transactions per minute.
