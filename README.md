@@ -98,7 +98,7 @@ The hyperparameter chosen:
 <center>
 
 |File name    | Value |
-|-------------|------|
+|:-------------:|:------:|
 |`hidden_dim`| 93 |
 |`num_layers`| 2 |
 |`num_epochs`| 123 |
