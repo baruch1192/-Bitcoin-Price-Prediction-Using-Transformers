@@ -68,13 +68,13 @@ The full model:
 
 
 # Parameters
-* `num_features` = number of features to chose from the full set (1 - 34)
-* `scaler` = the kind of scaler to use to scale the data (Standard Scaler - 'standard', Min Max Scaler - 'minmax')
-* `train_batch_size` = size of train batch
-* `eval_batch_size` = size of validation/test batch 
-* `epochs` = number of epochs to run the training
-* `bptt_src` = the length of the source sequence
-* `bptt_tgt` = the length of the target sequence
+* `num_features` = int, number of features to chose from the full set (1 - 34)
+* `scaler` = str, the kind of scaler to use to scale the data (Standard Scaler - 'standard', Min Max Scaler - 'minmax')
+* `train_batch_size` = int, size of train batch
+* `eval_batch_size` = int, size of validation/test batch 
+* `epochs` = int, number of epochs to run the training
+* `bptt_src` = int, the length of the source sequence
+* `bptt_tgt` = int, the length of the target sequence
 * `overlap` = number of overlapping samples between the source and the target
 * `num_encoder_layers` = number of enconder layers in the transformer 
 * `num_decoder_layers` = number of decoder layers in the transformer 
@@ -83,10 +83,12 @@ The full model:
 * `nhead` = number of heads in the multihead attention layers in the transformer (both encoder and decoder, must be a divider of out_features)
 * `dim_feedforward` = dimension of the feed forward layers in the transformer (both encoder and decoder)
 * `dropout` = the dropout probability of the dropout layers in the model
-* `clip_param` = the max norm of the gradients in the clip_grad_norm layer
 * `activation` = activation function to use in the transformer (ReLU - 'relu', GeLU - 'gelu')
+* `random_start_point` = bool, start each epoch from random start point in range of bptt_src
+* `clip_param` = the max norm of the gradients in the clip_grad_norm layer
 * `lr` = starting learning rate 
-
+* `gamma` = multiplicative factor of learning rate decay
+* `step_size` =  period of learning rate decay in epochs
 
 ## Optuna
 We  used Optuna in order to find the optimal hyperparameters in terms of the validation loss.
