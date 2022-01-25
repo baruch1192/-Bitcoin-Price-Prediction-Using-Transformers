@@ -92,6 +92,8 @@ The model structure:
 * `gamma` = multiplicative factor of learning rate decay
 * `step_size` =  period of learning rate decay in epochs
 
+The most crucial thing to understand here is the relations between `bptt_src`, `bptt_tgt` and `overlap`. We use `bptt_src` past samples to predict the following `bptt_tgt - overlap`.
+
 ## Optuna
 We used Optuna in order to find the optimal hyperparameters in terms of the validation loss.
 
@@ -146,12 +148,23 @@ The full analysis by Optuna can be found in [bitcoin_price_prediction_optuna.ipy
 ## Results
 
 We trained the model with the hyperparameters above. 
-Statistics:
+
+Model statistics:
 * Train Loss: <img src="https://render.githubusercontent.com/render/math?math=2.4\cdot10^{-5}">
 * Validation Loss: <img src="https://render.githubusercontent.com/render/math?math=6.1\cdot10^{-5}">
 * Test Loss: <img src="https://render.githubusercontent.com/render/math?math=10.1\cdot10^{-5}">
 
+After this training we checked the real-time performence of the model on the test set, meaning we entered the first 10 samples as source (`bptt_src` = 10), the 10th sample in this sequence as target (`overlap` = 1) predicted the next value (`bptt_tgt` - `overlap` = 1). We then shifted the source samples by one and predicted the next value in the same way. We repeated the process until we had the prediction for all the possible minutes in the test set. You can see the result here:
 
+<p align="center">
+  <img src="https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/images/Test_Prediction.png" />
+</p>
+
+Zoom-In view:
+
+<p align="center">
+  <img src="https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/images/Test_Presiction_Zoom_In.png" />
+</p>
 
 
 After training the model for the mentioned period, feeding the test data to get a prediction and then giving the actual & predicted prices to the bot, we got the following:
