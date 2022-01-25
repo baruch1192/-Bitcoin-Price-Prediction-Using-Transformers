@@ -4,9 +4,6 @@ In this project we used Transformers architecture - encoder-decoder, to predict 
 Our raw data holds almost 1 year of Bitcoin prices per minute (closing, opening, etc.). We extracted more statistics out of the data using common financial technical indicators - Finta, while making sure they are low correlated between them. We then fed the model with the data and trained it to predict the chosen future horizon based on past values.
 We optimized the hyperparameters of the model using Optuna.
 
-Model's prediction on the test set:
-![alt text](https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/images/Test_Prediction.png)
-
 - [Bitcoin Price Prediction Using Transformers](#Bitcoin-Price-Prediction-Using-Transformers)
   * [Previous Work](#Previous-Work)
   * [Data Proccessing](#Data-Proccessing)
@@ -41,23 +38,23 @@ We got it from: https://www.kaggle.com/aipeli/btcusdt and it can also be found i
 The data contains 5 features: the opening price, highest price, lowest price, closing price, and volume of transactions per minute.
 We calculated the correlations between the features and noticed that the first 4 (the prices) are high-correlated between themselves. So we wanted to add more meaningful features to the data before handing it to the model. For that, we used [FinTA](https://github.com/peerchemist/finta) which implements common financial technical indicators in Pandas. We chose only the features which are low-correlated to all others and made sure they all use only past samples (so we won't accidentally use the future). After choosing them we cleaned it from NaNs and ended up with a total of 34 features and 488029 samples (lost the first 131 samples).
 
-After that we splitted the data into train (80%), validation (10%) and test (10%), in chronological order as can be seen here:
+After that we split the data into train (80%), validation (10%), and test (10%), in chronological order as can be seen here:
 
 ![alt text](https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/images/Data_Separation.png)
 
 Then the train data is being scaled, and the validation and test datasets are scaled accordingly. 
 
-Finally, we divided the train set into tensors of large sequential batches. During the training, we will sample from each batch a sequence of `bptt_src` to use as source and a sequence of `bptt_tgt` to use as target. To create more diverse data, we can start sample from a random start point in each epoch, by setting the flag `random_start_point` True.
+Finally, we divided the train set into tensors of large sequential batches. During the training, we will sample from each batch a sequence of `bptt_src` to use as source and a sequence of `bptt_tgt` to use as target. To create more diverse data, we can start to sample from a random start point in each epoch, by setting the flag `random_start_point` True.
 
 
 ## Architecture
-We used PyTorch nn.Transformer as the basis of our model. Before both encoder and decoder we entered time embedding layer and in the output of the decoder a linear one.
+We used PyTorch nn.Transformer as the basis of our model. Before both encoder and decoder, we entered a time embedding layer and in the output of the decoder a linear one.
 
-In the time embedding layer we are implementing a version of [Time2Vec](https://arxiv.org/pdf/1907.05321.pdf). We added more features to the data in 2 ways:
-1. Periodic features implemented as a linear layer followed by sin activation - total of `periodic_features` features.
-2. Linear features implemented as a linear layer.
+In the time embedding layer, we are implementing a version of [Time2Vec](https://arxiv.org/pdf/1907.05321.pdf). We added more features to the data in 2 ways:
+1. Periodic features which  implemented as a linear layer followed by sin activation - a total of `periodic_features` features.
+2. Linear features which implemented as a linear layer.
 
-Both kinds of features are concatanated to the existing ones creating a total of `out_features` at the output.
+Both kinds of features are concatenated to the existing ones creating a total of `out_features` at the output.
 
 The linear layer before the output is used to output the same number of features as the target - `in_features`.
 
@@ -93,7 +90,7 @@ The model structure:
 The most crucial thing to understand here is the relations between `bptt_src`, `bptt_tgt` and `overlap`. We use `bptt_src` past samples to predict the following `bptt_tgt - overlap`.
 
 ## Optuna
-We used Optuna in order to find the optimal hyperparameters in terms of the validation loss.
+We used Optuna to find the optimal hyperparameters in terms of the validation loss.
 
 We fixed or constrained some of the hyperparameters by using the knowledge we gained during the manual tuning, to make runtime more reasonable:
 
@@ -112,9 +109,9 @@ We fixed or constrained some of the hyperparameters by using the knowledge we ga
 |`step_size `| 1 |
 |`gamma `| 0.95 |
 
-For the other hyperparameters we chose the range of possible values to optimize over.
+For the other hyperparameters, we chose the range of possible values to optimize over.
 
-These are the hyperparameter that was chosen:
+These are the hyperparameters that were chosen:
  
 |Hyperparameter   | Value |
 |-------------|------|
@@ -136,9 +133,9 @@ The impact of these hyperparameters on the loss is visualized here:
 </p>
 
 The most important one is the `scaler`.
-We also saw that `bptt_src` and `bptt_tgt` were not that important as we thought they would be.
+We also saw that `bptt_src` and `bptt_tgt` were not as important as we thought they would be.
 
-After our final fine tuning we only changed `bptt_tgt` from 6 as suggested by optuna to 2.
+After our final fine-tuning, we only changed `bptt_tgt` from 6 as suggested by optuna to 2.
 
 The full analysis by Optuna can be found in [bitcoin_price_prediction_optuna.ipynb](https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/data/bitcoin_price_prediction_optuna.ipynb)
 
@@ -152,26 +149,26 @@ Model statistics:
 * Validation Loss: <img src="https://render.githubusercontent.com/render/math?math=6.1\cdot10^{-5}">
 * Test Loss: <img src="https://render.githubusercontent.com/render/math?math=10.1\cdot10^{-5}">
 
-After this training we checked the real-time performence of the model on the test set, meaning we entered the first 10 samples as source (`bptt_src` = 10), the 10th sample in this sequence as target (`overlap` = 1) predicted the next value (`bptt_tgt` - `overlap` = 1). We then shifted the source samples by one and predicted the next value in the same way. We repeated the process until we had the prediction for all the possible minutes in the test set. You can see the result here:
+After this training we checked the real-time performance  of the model on the test set, meaning we entered the first 10 samples as source (`bptt_src` = 10), the 10th sample in this sequence as target (`overlap` = 1) predicted the next value (`bptt_tgt` - `overlap` = 1). We then shifted the source samples by one and predicted the next value in the same way. We repeated the process until we had the prediction for all the possible minutes in the test set. You can see the result here:
 
 <p align="center">
   <img src="https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/images/Test_Prediction.png" />
 </p>
 
-We can see that the general trend of the prediction is similar to the real one. That is not surprising because we are looking on a large scale of minutes, 48,802, where we the prediction is only based on the last 10 samples, so in the large scale we expect to see both real and prediction around the same values. For better analysis we need to look closer, so here is zoom-in view:
+We can see that the general trend of the prediction is similar to the real one. That is not surprising because we are looking at a large scale of minutes, 48,802, where the prediction is only based on the last 10 samples, so on the large scale, we expect to see both real and prediction around the same values. For better analysis we need to look closer, so here is a zoom-in view:
 
 <p align="center">
   <img src="https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/images/Test_Presiction_Zoom_In.png" />
 </p>
 
-Here we can see the differences between the real and predicted values. The trends are still somewhat similiar but sometimes the predidtion predicts a rise or fall before it happens, for example the rise around the minute 42,560 or the little fall in minute 42,580, and sometimes it just follows the existing trend like around minute 42,600.
+Here we can see the differences between the real and predicted values. The trends are still somewhat similar but sometimes the prediction predicts a rise or fall before it happens, for example, the rise around the minute 42,560 or the little fall in minute 42,580, and sometimes it just follows the existing trend like around minute 42,600.
 
 
 ## Usage
 
-To retrain the model run [bitcoin_price_prediction.ipynb](https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/data/bitcoin_price_prediction.ipynb) after you chose your hyperparameters in the first cell. The flag `plot_data_process` when set False will hide all the produced data processing image.
+To retrain the model run [bitcoin_price_prediction.ipynb](https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/data/bitcoin_price_prediction.ipynb) after you chose your hyperparameters in the first cell. The flag `plot_data_process` when set False will hide all the produced data processing images.
 
-If you would like to do further hyperparameters tuning using optuna run [bitcoin_price_prediction_optuna.ipynb](https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/data/bitcoin_price_prediction_optuna.ipynb). In the `define_model` function we decalred the fixed hyperparameters values and in `objective` function we declared the hyperparameters we want to tune along woth their range. 
+If you would like to do further hyperparameters tuning using optuna run [bitcoin_price_prediction_optuna.ipynb](https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/data/bitcoin_price_prediction_optuna.ipynb). In the `define_model` function we declared the values of the fixed hyperparameters and in the `objective` function we declared the hyperparameters we want to tune along with their range.
 
 
 
@@ -179,7 +176,7 @@ If you would like to do further hyperparameters tuning using optuna run [bitcoin
 
 | Folder |File name         | Purpose |
 |------|----------------------|------|
-|code|`bitcoin_price_prediction.ipynb`| Notebook which includes all data processing, training and inference |
+|code|`bitcoin_price_prediction.ipynb`| Notebook which includes all data processing, training, and inference |
 | |`bitcoin_price_prediction_optuna.ipynb`| Optuna hyperparameters tuning |
 |data|`okex_btcusdt_kline_1m.csv.zip`| Zip file containing the data we used in this project |
 |images|`Data_Separation.png`| Image that shows our train-validation-tets split |
@@ -191,9 +188,9 @@ If you would like to do further hyperparameters tuning using optuna run [bitcoin
 
 ## Further Work
 
-The work we presented here achieved good results, but of definitely there are aspects to improve and examen such as:
+The work we presented here achieved good results, but of definitely there are aspects to improve and examine such as:
 - Try running the model on a different stock.
-- Examen the feature extraction process and check which features are the most helpful.
+- Examine  the feature extraction process and check which features are the most helpful.
 - Further tuning of the hyperparameters, release the constraints we put on some of them.
 - Check the performance in real-time trading (better to start with a trading bot on the test set)
 
