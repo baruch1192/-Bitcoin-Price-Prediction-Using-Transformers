@@ -94,29 +94,52 @@ The model structure:
 ## Optuna
 We used Optuna in order to find the optimal hyperparameters in terms of the validation loss.
 
-For every hyperparameter we chose the range of which we wanted to optimize over. 
+We fixed or chose a deterministic function to some of the hyperparameters by using the knowledge we gained during the manual tuning, to make runtime more reasonable:
 
-The hyperparameter chosen:
-
-
- 
-|File name    | Value |
+|Hyperparameter   | Value |
 |-------------|------|
-|`hidden_dim`| 93 |
-|`num_layers`| 2 |
-|`num_epochs`| 123 |
-|`dropout_p`| 0.12 |
-|`lr`| 0.004 |
-|`bs`| 415 |
-|`bptt`| 16 |
-|`Optimizer`| Adam |
- 
+|`num_features`| 34 |
+|`train_batch_size`| 32 |
+|`eval_batch_size `| 32 |
+|`epochs `| 50 |
+|`overlap `| 1 |
+|`num_decoder_layers`| `num_encoder_layers` |
+|`periodic_features`| (`out_features` - `num_features` // 10) * 4 + 2 |
+|`nhead`| `out_features` / 4|
+|`step_size `| 1 |
+|`lr `| 0.5 |
+|`step_size `| 1 |
+|`gamma `| 0.95 |
 
-The impact of the hyperparameters on the loss is visualized here: 
+For the other hyperparameters we chose the range of possible values to optimize over.
+
+These are the hyperparameter the was chosen:
+ 
+|Hyperparameter   | Value |
+|-------------|------|
+|`scaler`| 'minmax' |
+|`bptt_src`| 10 |
+|`bptt_tgt`| 6 |
+|`num_encoder_layers`| 4 |
+|`out_features`| 60 |
+|`dim_feedforward`| 384 |
+|`dropout`| 0.0 |
+|`random_start_point`| 'False' |
+|`clip_param`| 0.75 |
+
+
+The impact of these hyperparameters on the loss is visualized here: 
 
 <p align="center">
   <img src="https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/images/Optuna_Results.jpeg" />
 </p>
+
+
+
+
+
+
+
 
 As mentioned, all of the following hyperparameters were found by Optuna and the analysis can be found in `Optuna Optimization - CGEN.ipynb` :
 
