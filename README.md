@@ -145,6 +145,12 @@ The full analysis by Optuna can be found in [bitcoin_price_prediction_optuna.ipy
 
 ## Results
 
+We trained the model with the hyperparameters above. 
+Statistics:
+* Train Loss: 2.4 \cdot 10^-5
+* Validation Loss: 6.1 \cdot 10^-5
+* Test Loss: 10.1 \cdot 10^-5
+
 After training the model for the mentioned period, feeding the test data to get a prediction and then giving the actual & predicted prices to the bot, we got the following:
 
 <p class="aligncenter">
