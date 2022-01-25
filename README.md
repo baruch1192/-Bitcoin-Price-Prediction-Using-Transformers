@@ -104,7 +104,7 @@ We fixed or chose a deterministic function to some of the hyperparameters by usi
 |`epochs `| 50 |
 |`overlap `| 1 |
 |`num_decoder_layers`| `num_encoder_layers` |
-|`periodic_features`| $$ (`out_features` - `num_features` // 10) * 4 + 2 $$ |
+|`periodic_features`| (`out_features` - `num_features` // 10) * 4 + 2 |
 |`nhead`| `out_features` / 4|
 |`step_size `| 1 |
 |`lr `| 0.5 |
@@ -134,12 +134,12 @@ The impact of these hyperparameters on the loss is visualized here:
   <img src="https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/images/Optuna_Results.jpeg" />
 </p>
 
+The most important one is the `scaler`.
+We also saw that `bptt_src` and `bptt_tgt` were not that important as we thought they would be.
 
+After our final fine tuning we only changed `bptt_tgt` from 6 as suggested by optuna to 2.
 
-
-
-
-
+The full analysis by Optuna can be found in [bitcoin_price_prediction_optuna.ipynb](https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/data/bitcoin_price_prediction_optuna)
 
 As mentioned, all of the following hyperparameters were found by Optuna and the analysis can be found in `Optuna Optimization - CGEN.ipynb` :
 
