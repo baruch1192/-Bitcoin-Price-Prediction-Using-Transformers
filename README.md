@@ -131,7 +131,7 @@ These are the hyperparameter the was chosen:
 The impact of these hyperparameters on the loss is visualized here: 
 
 <p align="center">
-  <img src="https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/images/Optuna_Results.jpeg" />
+  <img src="https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/images/Optuna_Result.jpeg" />
 </p>
 
 The most important one is the `scaler`.
@@ -139,7 +139,7 @@ We also saw that `bptt_src` and `bptt_tgt` were not that important as we thought
 
 After our final fine tuning we only changed `bptt_tgt` from 6 as suggested by optuna to 2.
 
-The full analysis by Optuna can be found in [bitcoin_price_prediction_optuna.ipynb](https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/data/bitcoin_price_prediction_optuna)
+The full analysis by Optuna can be found in [bitcoin_price_prediction_optuna.ipynb](https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/data/bitcoin_price_prediction_optuna.ipynb)
 
 As mentioned, all of the following hyperparameters were found by Optuna and the analysis can be found in `Optuna Optimization - CGEN.ipynb` :
 
