@@ -5,7 +5,7 @@ Our raw data holds almost 1 year of Bitcoin prices per minute (closing, opening,
 We optimized the hyperparameters of the model using Optuna.
 
 <p align="center">
-  <img src='https://github.com/orpatashnik/StyleCLIP/blob/main/img/StyleCLIP_gif.gif' width=600 ></a>
+  <img src='https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/images/presentation_preview.gif' width=600 ></a>
 
 Watch on Youtube:  <a href="https://youtu.be/tb_47ng7ZOI"><img src="https://img.shields.io/badge/-YouTube-red?&style=for-the-badge&logo=youtube&logoColor=white" height=20></a>
 
@@ -42,7 +42,7 @@ https://github.com/roeeben/Stock-Price-Prediction-With-a-Bot/blob/main/README.md
 We are using Bitcoin historical one-minute records from (UTC+8): 2021-01-01 00:00:00 - 2021-12-05 23:59:00, containing 488,160 records from Okex Exchange.
 We got it from: https://www.kaggle.com/aipeli/btcusdt and it can also be found in our repository [here](https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/data/okex_btcusdt_kline_1m.csv.zip).
 
-The data contains 5 features: the opening price, highest price, lowest price, closing price, and volume of transactions per minute.
+Without regard to the time stamp feature, the data contains 5 features: the opening price, highest price, lowest price, closing price, and volume of transactions per minute.
 We calculated the correlations between the features and noticed that the first 4 (the prices) are high-correlated between themselves. So we wanted to add more meaningful features to the data before handing it to the model. For that, we used [FinTA](https://github.com/peerchemist/finta) which implements common financial technical indicators in Pandas. We chose only the features which are low-correlated to all others and made sure they all use only past samples (so we won't accidentally use the future). After choosing them we cleaned it from NaNs and ended up with a total of 34 features and 488029 samples (lost the first 131 samples).
 
 After that we split the data into train (80%), validation (10%), and test (10%), in chronological order as can be seen here:
@@ -175,7 +175,7 @@ Here we can see the differences between the real and predicted values. The trend
 
 To retrain the model run [bitcoin_price_prediction.ipynb](https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/data/bitcoin_price_prediction.ipynb) after you chose your hyperparameters in the first cell. The flag `plot_data_process` when set False will hide all the produced data processing images.
 
-If you would like to do further hyperparameters tuning using optuna run [bitcoin_price_prediction_optuna.ipynb](https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/data/bitcoin_price_prediction_optuna.ipynb). In the `define_model` function we declared the values of the fixed hyperparameters and in the `objective` function we declared the hyperparameters we want to tune along with their range.
+If you would like to do further hyperparameters tuning using optuna run [bitcoin_price_prediction_optuna.ipynb](https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/data/bitcoin_price_prediction_optuna.ipynb). In the `define_model` function we declared the values of the fixed or constrained hyperparameters and in the `objective` function we declared the hyperparameters we want to tune along with their range.
 
 
 
