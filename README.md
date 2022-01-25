@@ -147,7 +147,7 @@ The full analysis by Optuna can be found in [bitcoin_price_prediction_optuna.ipy
 
 We trained the model with the hyperparameters above. 
 Statistics:
-* Train Loss: 2.4 \cdot 10{^-5}
+* Train Loss: <img src="https://render.githubusercontent.com/render/math?math=2.4\cdot10^{-5}">
 * Validation Loss: 6.1 \cdot 10^-5
 * Test Loss: 10.1 \cdot 10^-5
 
