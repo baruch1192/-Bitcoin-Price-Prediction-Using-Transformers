@@ -142,8 +142,28 @@ After our final fine tuning we only changed `bptt_tgt` from 6 as suggested by op
 
 The full analysis by Optuna can be found in [bitcoin_price_prediction_optuna.ipynb](https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/data/bitcoin_price_prediction_optuna.ipynb)
 
-As mentioned, all of the following hyperparameters were found by Optuna and the analysis can be found in `Optuna Optimization - CGEN.ipynb` :
 
+## Results
+
+After training the model for the mentioned period, feeding the test data to get a prediction and then giving the actual & predicted prices to the bot, we got the following:
+
+<p class="aligncenter">
+<img src="./assets/CGEN test.png">
+</p>
+
+In green we see the points in which the model buys, and in red: sells. 
+The bot has had 52% of successful trades, but we don't give this number too much thoughts since a trader can have a profit even with 10% successful trades, aslong as the losing trades don't lose as much as the winning trades gain.
+Overall, it was given 5000$ at the start of the simulation and finished with a value of 5204$, i.e. it gained 200$, which the Buy&Holder has lost 54$.
+
+Up top we have the animation of the bot running in action on the test data, and if we freeze the animation at the end:
+
+<p class="aligncenter">
+  <img src="./assets/Bot on Test.png">
+</p>
+
+We can see how the bot made its profit: from minute ~600 to ~1100 we have an increase of the stock price, which the bot manages to utilize, and after that the stock starts to decrease back. While the Buy&Hold strategy lose all the previously gained money in that period, it seems that our bot manages to detect the fall and sells everything, and thus hold on to its profits.
+
+We are, however, aware that the bot wasn't tested on a long enough period, and this method is very much likely to fail in a more diverse setting. What we're showing is a success for this specific period (even though there weren't any tuning on that period, since it's the test set).
 
 
 
@@ -252,28 +272,6 @@ Every minute the bot checks the percentage of different between the actual price
 |`Optuna Optimization - CGEN.ipynb`| A notebook which has the entire hyperparameters optimization using Optuna|
 
 
-
-## Results
-
-After training the model for the mentioned period, feeding the test data to get a prediction and then giving the actual & predicted prices to the bot, we got the following:
-
-<p class="aligncenter">
-<img src="./assets/CGEN test.png">
-</p>
-
-In green we see the points in which the model buys, and in red: sells. 
-The bot has had 52% of successful trades, but we don't give this number too much thoughts since a trader can have a profit even with 10% successful trades, aslong as the losing trades don't lose as much as the winning trades gain.
-Overall, it was given 5000$ at the start of the simulation and finished with a value of 5204$, i.e. it gained 200$, which the Buy&Holder has lost 54$.
-
-Up top we have the animation of the bot running in action on the test data, and if we freeze the animation at the end:
-
-<p class="aligncenter">
-  <img src="./assets/Bot on Test.png">
-</p>
-
-We can see how the bot made its profit: from minute ~600 to ~1100 we have an increase of the stock price, which the bot manages to utilize, and after that the stock starts to decrease back. While the Buy&Hold strategy lose all the previously gained money in that period, it seems that our bot manages to detect the fall and sells everything, and thus hold on to its profits.
-
-We are, however, aware that the bot wasn't tested on a long enough period, and this method is very much likely to fail in a more diverse setting. What we're showing is a success for this specific period (even though there weren't any tuning on that period, since it's the test set).
 
 
 ## Further Work
