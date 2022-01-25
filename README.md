@@ -102,7 +102,7 @@ We fixed or constrained some of the hyperparameters by using the knowledge we ga
 |`epochs `| 50 |
 |`overlap `| 1 |
 |`num_decoder_layers`| `num_encoder_layers` |
-|`periodic_features`| (`out_features` - `num_features` // 10) <img src="https://render.githubusercontent.com/render/math?math=\cdot"> 4 + 2 |
+|`periodic_features`| (`out_features` - `num_features` // 10) x 4 + 2 |
 |`nhead`| `out_features` / 4|
 |`step_size `| 1 |
 |`lr `| 0.5 |
