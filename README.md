@@ -191,6 +191,7 @@ If you would like to do further hyperparameters tuning using optuna run [bitcoin
 | |`Optuna_Result.jpeg`| Image that shows the importance of the Hyperparameters produced by Optuna  |
 | |`Test_Prediction.png`| Image that shows our result on the test set |
 | |`Test_Presiction_Zoom_In.png`| Image that shows our result on the test set - zoomed-in|
+| |`presentation_preview.gif`| Gif showing preview of the project presentation|
 
 
 ## Further Work
