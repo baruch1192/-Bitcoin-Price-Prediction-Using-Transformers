@@ -11,9 +11,9 @@ Model's prediction on the test set:
   * [Previous Work](#Previous-Work)
   * [Data Proccessing](#Data-Proccessing)
   * [Architecture](#Architecture)
-  * [Parameters](#Parameters)
+  * [Hyperparameters](#Hyperparameters)
   * [Optuna](#Optuna)
-  * [Results](#Results)
+  * [Result](#Result)
   * [Usage](#Usage)
   * [Files in the Repository](#Files-in-the-Repository)
   * [Further Work](#Further-Work)
@@ -107,7 +107,7 @@ We fixed or chose a deterministic function to some of the hyperparameters by usi
 |`epochs `| 50 |
 |`overlap `| 1 |
 |`num_decoder_layers`| `num_encoder_layers` |
-|`periodic_features`| (`out_features` - `num_features` // 10) * 4 + 2 |
+|`periodic_features`| (`out_features` - `num_features` // 10) <img src="https://render.githubusercontent.com/render/math?math=\cdot"> 4 + 2 |
 |`nhead`| `out_features` / 4|
 |`step_size `| 1 |
 |`lr `| 0.5 |
@@ -145,7 +145,7 @@ After our final fine tuning we only changed `bptt_tgt` from 6 as suggested by op
 The full analysis by Optuna can be found in [bitcoin_price_prediction_optuna.ipynb](https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/data/bitcoin_price_prediction_optuna.ipynb)
 
 
-## Results
+## Result
 
 We trained the model with the hyperparameters above. 
 
@@ -175,19 +175,34 @@ To retrain the model run [bitcoin_price_prediction.ipynb](https://github.com/bar
 
 If you would like to do further hyperparameters tuning using optuna run [bitcoin_price_prediction_optuna.ipynb](https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/data/bitcoin_price_prediction_optuna.ipynb). In the `define_model` function we decalred the fixed hyperparameters values and in `objective` function we declared the hyperparameters we want to tune along woth their range. 
 
-First, anyone who'd like is welcome to just run the `Model Training - CGEN.ipynb` to retrain the model, or run `stock_bot.py` to run the bot and/or edit it.
 
-# Parameters
-* kernel_size = size of the line segement kernel (usually 1/30 of the height/width of the original image)
-* stroke_width = thickness of the strokes in the Stroke Map (0, 1, 2)
-* num_of_directions = stroke directions in the Stroke Map (used for the kernels)
-* smooth_kernel = how the image is smoothed (Gaussian Kernel - "gauss", Median Filter - "median")
-* gradient_method = how the gradients for the Stroke Map are calculated (0 - forward gradient, 1 - Sobel)
-* rgb = True if the original image has 3 channels, False if grayscale
-* w_group = 3 possible weight groups (0, 1, 2) for the histogram distribution, according to the paper (brighter to darker)
-* pencil_texture_path = path to the Pencil Texture Map to use (4 options in "./pencils", you can add your own)
-* stroke_darkness = 1 is the same, up is darker.
-* tone_darkness = as above
+
+## Files in the repository
+
+| Folder |File name         | Purpose |
+|------|----------------------|------|
+|code|`bitcoin_price_prediction.ipynb`| Notebook which includes all data processing, training and inference |
+| |`bitcoin_price_prediction_optuna.ipynb`| Optuna hyperparameters tuning |
+|data|`okex_btcusdt_kline_1m.csv.zip`| Zip file containing the data we used in this project |
+|images|`Data_Separation.png`| Image that shows our train-validation-tets split |
+| |`Model_Structure.png`| Image that shows our model architecture |
+| |`Optuna_Result.jpeg`| Image that shows the importance of the Hyperparameters produced by Optuna  |
+| |`Test_Prediction.png`| Image that shows our result on the test set |
+| |`Test_Presiction_Zoom_In.png`| Image that shows our result on the test set - zoomed-in|
+
+
+
+| |`model.py`| The LSTM model|
+| |`stock_bot.py`| Everything that's related to the bot, including to its definition and simulations |
+| |`train.py`| The training loop|
+| |`CGEN_original.pkl`| The actual test prices for the bot to use |
+| |`CGEN_predict.pkl`| Our prediction for the test prices for the bot to use |
+| |`Model Training - CGEN.ipynb`| A notebook which shows our data with the features, aswell as the training procedure and graphs |
+| |`Optuna Optimization - CGEN.ipynb`| A notebook which has the entire hyperparameters optimization using Optuna|
+
+
+
+
 
 # Folders
 * inputs: test images from the publishers' website: http://www.cse.cuhk.edu.hk/leojia/projects/pencilsketch/pencil_drawing.htm
@@ -198,20 +213,6 @@ First, anyone who'd like is welcome to just run the `Model Training - CGEN.ipynb
 
 [2] Matlab implementation by "candtcat1992" - https://github.com/candycat1992/PencilDrawing
 
-
-
-## Files in the repository
-
-| Folder |File name         | Purpose |
-|------|----------------------|------|
-|`data_prep.py`| All of the data transformations (train/valid/test splits & feature engineering) |
-|`model.py`| The LSTM model|
-|`stock_bot.py`| Everything that's related to the bot, including to its definition and simulations |
-|`train.py`| The training loop|
-|`CGEN_original.pkl`| The actual test prices for the bot to use |
-|`CGEN_predict.pkl`| Our prediction for the test prices for the bot to use |
-|`Model Training - CGEN.ipynb`| A notebook which shows our data with the features, aswell as the training procedure and graphs |
-|`Optuna Optimization - CGEN.ipynb`| A notebook which has the entire hyperparameters optimization using Optuna|
 
 
 
