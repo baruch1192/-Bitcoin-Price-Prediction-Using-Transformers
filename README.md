@@ -6,9 +6,10 @@ We optimized the hyperparameters of the model using Optuna.
 
 <p align="center">
   <img src='https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/images/presentation_preview.gif' width=600 ></a>
+</p>
 
+<p align="center">
 Watch on Youtube:  <a href="https://youtu.be/tb_47ng7ZOI"><img src="https://img.shields.io/badge/-YouTube-red?&style=for-the-badge&logo=youtube&logoColor=white" height=20></a>
-
 </p>
  
 - [Bitcoin Price Prediction Using Transformers](#Bitcoin-Price-Prediction-Using-Transformers)
