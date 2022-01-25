@@ -1,4 +1,4 @@
-## <center>Bitcoin Price Prediction Using Transformers</center>
+# <center>Bitcoin Price Prediction Using Transformers</center>
 
 In this project we used Transformers architecture - encoder-decoder, to predict Bitcoin value into a chosen future horizon. 
 Our raw data holds almost 1 year of Bitcoin prices per minute (closing, opening, etc.). We extracted more statistics out of the data using common financial technical indicators - Finta, while making sure they are low correlated between them. We then fed the model with the data and trained it to predict the chosen future horizon based on past values.
@@ -17,8 +17,6 @@ Model's prediction on the test set:
   * [Usage](#Usage)
   * [Files in the Repository](#Files-in-the-Repository)
   * [Further Work](#Further-Work)
-  * [DISCLAIMER](#DISCLAIMER)
-
 
 
 ## Previous Work
@@ -97,7 +95,7 @@ The most crucial thing to understand here is the relations between `bptt_src`, `
 ## Optuna
 We used Optuna in order to find the optimal hyperparameters in terms of the validation loss.
 
-We fixed or chose a deterministic function to some of the hyperparameters by using the knowledge we gained during the manual tuning, to make runtime more reasonable:
+We fixed or constrained some of the hyperparameters by using the knowledge we gained during the manual tuning, to make runtime more reasonable:
 
 |Hyperparameter   | Value |
 |-------------|------|
@@ -191,49 +189,12 @@ If you would like to do further hyperparameters tuning using optuna run [bitcoin
 | |`Test_Presiction_Zoom_In.png`| Image that shows our result on the test set - zoomed-in|
 
 
-
-| |`model.py`| The LSTM model|
-| |`stock_bot.py`| Everything that's related to the bot, including to its definition and simulations |
-| |`train.py`| The training loop|
-| |`CGEN_original.pkl`| The actual test prices for the bot to use |
-| |`CGEN_predict.pkl`| Our prediction for the test prices for the bot to use |
-| |`Model Training - CGEN.ipynb`| A notebook which shows our data with the features, aswell as the training procedure and graphs |
-| |`Optuna Optimization - CGEN.ipynb`| A notebook which has the entire hyperparameters optimization using Optuna|
-
-
-
-
-
-# Folders
-* inputs: test images from the publishers' website: http://www.cse.cuhk.edu.hk/leojia/projects/pencilsketch/pencil_drawing.htm
-* pencils: pencil textures for generating the Pencil Texture Map
-
-# Reference
-[1] Lu C, Xu L, Jia J. Combining sketch and tone for pencil drawing production[C]//Proceedings of the Symposium on Non-Photorealistic Animation and Rendering. Eurographics Association, 2012: 65-73.
-
-[2] Matlab implementation by "candtcat1992" - https://github.com/candycat1992/PencilDrawing
-
-
-
-
-
 ## Further Work
 
-First, anyone who'd like is welcome to just run the `Model Training - CGEN.ipynb` to retrain the model, or run `stock_bot.py` to run the bot and/or edit it.
+The work we presented here achieved good results, but of definitely there are aspects to improve and examen such as:
+- Try running the model on a different stock.
+- Examen the feature extraction process and check which features are the most helpful.
+- Further tuning of the hyperparameters, release the constraints we put on some of them.
+- Check the performance in real-time trading (better to start with a trading bot on the test set)
 
-We most definitely have some improvements to our small project in mind, including but not limited to:
-- Involving various stocks instead of a single one.
-- Calculating many more features (using [FinTA](https://github.com/peerchemist/finta)) and have [Optuna](https://github.com/optuna/optuna) to choose which features to pick. 
-- Making the bot more sophisticated, maybe not deterministic or actually train its hyperparameters on a validation set or another stock.
-- Training for a longer period: we specifically cut a period in which the Buy&Hold strategy loses a bit because we wanted to compete it, but it doesn't have to be the case.
-
-
-## References
-* [A nice LSTM article](https://web.stanford.edu/class/cs379c/archive/2018/class_messages_listing/content/Artificial_Neural_Network_Technology_Tutorials/OlahLSTM-NEURAL-NETWORK-TUTORIAL-15.pdf) by Stanford.
-* [FinTA](https://github.com/peerchemist/finta).
-* [Optuna](https://github.com/optuna/optuna).
-
-
-## DISCLAIMER
-
-We'd like to further emphasize in addition to our comments above that our predictions and bot are nowhere near reliable and we'd highly advise not to try any of the provided here in a live or real setting.
+Hope this was helpful and please let us know if you have any comments on this work.
