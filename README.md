@@ -4,6 +4,8 @@ In this project we used Transformers architecture - encoder-decoder, to predict 
 Our raw data holds almost 1 year of Bitcoin prices per minute (closing, opening, etc.). We extracted more statistics out of the data using common financial technical indicators - Finta, while making sure they are low correlated between them. We then fed the model with the data and trained it to predict the chosen future horizon based on past values.
 We optimized the hyperparameters of the model using Optuna.
 
+Our project presentation link: <a href="https://github.com/orpatashnik/StyleCLIP"><img src="https://img.shields.io/badge/-YouTube-red?&style=for-the-badge&logo=youtube&logoColor=white" height=20></a>
+ 
 - [Bitcoin Price Prediction Using Transformers](#Bitcoin-Price-Prediction-Using-Transformers)
   * [Previous Work](#Previous-Work)
   * [Data Proccessing](#Data-Proccessing)
