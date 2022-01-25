@@ -173,7 +173,8 @@ Here we can see the differences between the real and predicted values. The trend
 
 To retrain the model run [bitcoin_price_prediction.ipynb](https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/data/bitcoin_price_prediction.ipynb) after you chose your hyperparameters in the first cell. The flag `plot_data_process` when set False will hide all the produced data processing image.
 
-If you would like to do further hyperparameters tuning using optuna run [bitcoin_price_prediction_optuna.ipynb](https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/data/bitcoin_price_prediction_optuna.ipynb)
+If you would like to do further hyperparameters tuning using optuna run [bitcoin_price_prediction_optuna.ipynb](https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/data/bitcoin_price_prediction_optuna.ipynb). In the `define_model` function we decalred the fixed hyperparameters values and in `objective` function we declared the hyperparameters we want to tune along woth their range. 
+
 First, anyone who'd like is welcome to just run the `Model Training - CGEN.ipynb` to retrain the model, or run `stock_bot.py` to run the bot and/or edit it.
 
 # Parameters
@@ -199,33 +200,10 @@ First, anyone who'd like is welcome to just run the `Model Training - CGEN.ipynb
 
 
 
-
-
-
-
-
-
-## Architecture
-We used PyTorch to create a model with an LSTM layer which has a dropout, in addition to a fully connected layer.
-
-The model was written in a general fashion: we set all of his layers size, aswell as the mentioned `bptt` and `batch_size` as variables and proceeded to use [Optuna](https://github.com/optuna/optuna) to optimize over the validation loss.
-
-This loss, aswell as the training loss, was defined as the MSE between the LSTM's prediction of a minute and the closing price of the next minute, which is of course what we're trying to predict.
-
-
-
-## Bot
-After training the model and feeding the test data, we use a simple bot that tries to buy the stock before it surges and sell it before it gets down. That way, it theoretically can have a profit despite the fact that the stock eventually gets to a lower price than its starting price.
-
-Every minute the bot checks the percentage of different between the actual price of the current minute and the prediction of of the next minute's price. If the percentage is greater than some predefined positive threshold it generally buys a stock, and if the percentage is lower than some predefined negative threshold it sells a stock. For more specifics we refer to `stock_bot.py` .
-
-
-
-
 ## Files in the repository
 
-|File name         | Purpose |
-|----------------------|------|
+| Folder |File name         | Purpose |
+|------|----------------------|------|
 |`data_prep.py`| All of the data transformations (train/valid/test splits & feature engineering) |
 |`model.py`| The LSTM model|
 |`stock_bot.py`| Everything that's related to the bot, including to its definition and simulations |
