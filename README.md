@@ -65,7 +65,7 @@ The linear layer before the output is used to output the same number of features
 
 The model structure:
 <p align="center">
-  <img src="https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/images/Model_Structure.jpeg" width="450"/>
+  <img src="https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/images/Model_Structure.png" width="450"/>
 </p>
 
 
