@@ -104,7 +104,7 @@ We fixed or chose a deterministic function to some of the hyperparameters by usi
 |`epochs `| 50 |
 |`overlap `| 1 |
 |`num_decoder_layers`| `num_encoder_layers` |
-|`periodic_features`| $ (`out_features` - `num_features` // 10) * 4 + 2 $ |
+|`periodic_features`| $$ (`out_features` - `num_features` // 10) * 4 + 2 $$ |
 |`nhead`| `out_features` / 4|
 |`step_size `| 1 |
 |`lr `| 0.5 |
