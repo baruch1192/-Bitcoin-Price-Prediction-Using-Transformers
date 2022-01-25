@@ -28,11 +28,12 @@ Bitcoin prediction using RNN:
 
 IBM stock price prediction using Transformer-Encoder:
 
-&emsp; https://github.com/roeeben/Stock-Price-Prediction-With-a-Bot/blob/main/README.md
+&emsp; https://github.com/JanSchm/CapMarket/blob/master/bot_experiments/IBM_Transformer%2BTimeEmbedding.ipynb
 
 Short term stock price prediction using LSTM with a simple trading bot:
 
-&emsp; https://github.com/JanSchm/CapMarket/blob/master/bot_experiments/IBM_Transformer%2BTimeEmbedding.ipynb
+&emsp; https://github.com/roeeben/Stock-Price-Prediction-With-a-Bot/blob/main/README.md
+
 
 
 ## Data Processing
