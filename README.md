@@ -34,6 +34,7 @@ Short term stock price prediction using LSTM with a simple trading bot:
 
 &emsp; https://github.com/JanSchm/CapMarket/blob/master/bot_experiments/IBM_Transformer%2BTimeEmbedding.ipynb
 
+
 ## Data Processing
 We are using Bitcoin historical one-minute records from (UTC+8): 2021-01-01 00:00:00 - 2021-12-05 23:59:00, containing 488,160 records from Okex Exchange.
 We got it from: https://www.kaggle.com/aipeli/btcusdt and it can also be found in our repository [here](https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/data/okex_btcusdt_kline_1m.csv.zip).
@@ -91,7 +92,7 @@ The model structure:
 * `step_size` =  period of learning rate decay in epochs
 
 ## Optuna
-We  used Optuna in order to find the optimal hyperparameters in terms of the validation loss.
+We used Optuna in order to find the optimal hyperparameters in terms of the validation loss.
 
 For every hyperparameter we chose the range of which we wanted to optimize over. 
 
@@ -114,7 +115,7 @@ The hyperparameter chosen:
 The impact of the hyperparameters on the loss is visualized here: 
 
 <p align="center">
-  <img src="https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/images/optuna_results.jpeg" />
+  <img src="https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/images/Optuna_Results.jpeg" />
 </p>
 
 As mentioned, all of the following hyperparameters were found by Optuna and the analysis can be found in `Optuna Optimization - CGEN.ipynb` :
