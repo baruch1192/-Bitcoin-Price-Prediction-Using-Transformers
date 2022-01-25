@@ -70,27 +70,27 @@ The model structure:
 
 
 # Parameters
-* `num_features` = int, number of features to chose from the full set (1 - 34)
+* `num_features` = int, number of features to choose from the full set (1 - 34)
 * `scaler` = str, the kind of scaler to use to scale the data (Standard Scaler - 'standard', Min Max Scaler - 'minmax')
 * `train_batch_size` = int, size of train batch
 * `eval_batch_size` = int, size of validation/test batch 
 * `epochs` = int, number of epochs to run the training
 * `bptt_src` = int, the length of the source sequence
 * `bptt_tgt` = int, the length of the target sequence
-* `overlap` = number of overlapping samples between the source and the target
-* `num_encoder_layers` = number of enconder layers in the transformer 
-* `num_decoder_layers` = number of decoder layers in the transformer 
-* `periodic_features` = number of periodic features to add in the time embedding layer
-* `out_features` = number of output feature after the time embedding layer (> in_features + periodic_features)
-* `nhead` = number of heads in the multihead attention layers in the transformer (both encoder and decoder, must be a divider of out_features)
-* `dim_feedforward` = dimension of the feed forward layers in the transformer (both encoder and decoder)
-* `dropout` = the dropout probability of the dropout layers in the model
-* `activation` = activation function to use in the transformer (ReLU - 'relu', GeLU - 'gelu')
+* `overlap` = int, number of overlapping samples between the source and the target
+* `num_encoder_layers` = int, number of enconder layers in the transformer 
+* `num_decoder_layers` = int, number of decoder layers in the transformer 
+* `periodic_features` = int, number of periodic features to add in the time embedding layer
+* `out_features` = int, number of output feature after the time embedding layer (> in_features + periodic_features)
+* `nhead` = int, number of heads in the multihead attention layers in the transformer (both encoder and decoder, must be a divider of out_features)
+* `dim_feedforward` = int, dimension of the feed forward layers in the transformer (both encoder and decoder)
+* `dropout` = float, the dropout probability of the dropout layers in the model (0.0 - 1.0)
+* `activation` = str, activation function to use in the transformer (ReLU - 'relu', GeLU - 'gelu')
 * `random_start_point` = bool, start each epoch from random start point in range of bptt_src
-* `clip_param` = the max norm of the gradients in the clip_grad_norm layer
-* `lr` = starting learning rate 
-* `gamma` = multiplicative factor of learning rate decay
-* `step_size` =  period of learning rate decay in epochs
+* `clip_param` = float, the max norm of the gradients in the clip_grad_norm layer 
+* `lr` = float, starting learning rate 
+* `gamma` = float, multiplicative factor of learning rate decay (0.0 - 1.0)
+* `step_size` = int, period of learning rate decay in epochs
 
 The most crucial thing to understand here is the relations between `bptt_src`, `bptt_tgt` and `overlap`. We use `bptt_src` past samples to predict the following `bptt_tgt - overlap`.
 
@@ -116,7 +116,7 @@ We fixed or chose a deterministic function to some of the hyperparameters by usi
 
 For the other hyperparameters we chose the range of possible values to optimize over.
 
-These are the hyperparameter the was chosen:
+These are the hyperparameter that was chosen:
  
 |Hyperparameter   | Value |
 |-------------|------|
@@ -159,6 +159,8 @@ After this training we checked the real-time performence of the model on the tes
 <p align="center">
   <img src="https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/images/Test_Prediction.png" />
 </p>
+
+We can see that the general trend of the prediction is similar to the real one. That is not surprising because we are looking on a large scale of minutes, 48,802, where we the prediction is only based on the 
 
 Zoom-In view:
 
