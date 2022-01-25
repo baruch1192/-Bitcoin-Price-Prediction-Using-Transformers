@@ -197,4 +197,6 @@ The work we presented here achieved good results, but of definitely there are as
 - Further tuning of the hyperparameters, release the constraints we put on some of them.
 - Check the performance in real-time trading (better to start with a trading bot on the test set)
 
-Hope this was helpful and please let us know if you have any comments on this work.
+Hope this was helpful and please let us know if you have any comments on this work:
+https://github.com/yuvalaya
+https://github.com/baruch1192
