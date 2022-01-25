@@ -48,7 +48,7 @@ After that we splitted the data into train (80%), validation (10%) and test (10%
 
 Then the train data is being scaled, and the validation and test datasets are scaled accordingly. 
 
-Finally, we divided the train set into tensors of large sequential batches. During the training, we will sample from each batch a sequence of `bptt_src` to use as source and a sequence of `bptt_tgt` to use as target. In each epoch, we start to sample from a random start point to create more diverse data.
+Finally, we divided the train set into tensors of large sequential batches. During the training, we will sample from each batch a sequence of `bptt_src` to use as source and a sequence of `bptt_tgt` to use as target. To create more diverse data, we can start sample from a random start point in each epoch, by setting the flag `random_start_point` True.
 
 
 ## Architecture
