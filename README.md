@@ -81,12 +81,12 @@ The model structure:
 * `num_encoder_layers` = int, number of enconder layers in the transformer 
 * `num_decoder_layers` = int, number of decoder layers in the transformer 
 * `periodic_features` = int, number of periodic features to add in the time embedding layer
-* `out_features` = int, number of output feature after the time embedding layer (> in_features + periodic_features)
-* `nhead` = int, number of heads in the multihead attention layers in the transformer (both encoder and decoder, must be a divider of out_features)
+* `out_features` = int, number of output feature after the time embedding layer (> `in_features + periodic_features`)
+* `nhead` = int, number of heads in the multihead attention layers in the transformer (both encoder and decoder, must be a divider of `out_features`)
 * `dim_feedforward` = int, dimension of the feed forward layers in the transformer (both encoder and decoder)
 * `dropout` = float, the dropout probability of the dropout layers in the model (0.0 - 1.0)
 * `activation` = str, activation function to use in the transformer (ReLU - 'relu', GeLU - 'gelu')
-* `random_start_point` = bool, start each epoch from random start point in range of bptt_src
+* `random_start_point` = bool, start each epoch from random start point from the first `bptt_src` samples
 * `clip_param` = float, the max norm of the gradients in the clip_grad_norm layer 
 * `lr` = float, starting learning rate 
 * `gamma` = float, multiplicative factor of learning rate decay (0.0 - 1.0)
@@ -160,82 +160,22 @@ After this training we checked the real-time performence of the model on the tes
   <img src="https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/images/Test_Prediction.png" />
 </p>
 
-We can see that the general trend of the prediction is similar to the real one. That is not surprising because we are looking on a large scale of minutes, 48,802, where we the prediction is only based on the 
-
-Zoom-In view:
+We can see that the general trend of the prediction is similar to the real one. That is not surprising because we are looking on a large scale of minutes, 48,802, where we the prediction is only based on the last 10 samples, so in the large scale we expect to see both real and prediction around the same values. For better analysis we need to look closer, so here is zoom-in view:
 
 <p align="center">
   <img src="https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/images/Test_Presiction_Zoom_In.png" />
 </p>
 
+Here we can see the differences between the real and predicted values. The trends are still somewhat similiar but sometimes the predidtion predicts a rise or fall before it happens, for example the rise around the minute 42,560 or the little fall in minute 42,580, and sometimes it just follows the existing trend like around minute 42,600.
 
-After training the model for the mentioned period, feeding the test data to get a prediction and then giving the actual & predicted prices to the bot, we got the following:
-
-<p class="aligncenter">
-<img src="./assets/CGEN test.png">
-</p>
-
-In green we see the points in which the model buys, and in red: sells. 
-The bot has had 52% of successful trades, but we don't give this number too much thoughts since a trader can have a profit even with 10% successful trades, aslong as the losing trades don't lose as much as the winning trades gain.
-Overall, it was given 5000$ at the start of the simulation and finished with a value of 5204$, i.e. it gained 200$, which the Buy&Holder has lost 54$.
-
-Up top we have the animation of the bot running in action on the test data, and if we freeze the animation at the end:
-
-<p class="aligncenter">
-  <img src="./assets/Bot on Test.png">
-</p>
-
-We can see how the bot made its profit: from minute ~600 to ~1100 we have an increase of the stock price, which the bot manages to utilize, and after that the stock starts to decrease back. While the Buy&Hold strategy lose all the previously gained money in that period, it seems that our bot manages to detect the fall and sells everything, and thus hold on to its profits.
-
-We are, however, aware that the bot wasn't tested on a long enough period, and this method is very much likely to fail in a more diverse setting. What we're showing is a success for this specific period (even though there weren't any tuning on that period, since it's the test set).
-
-
-
-
-https://towardsdatascience.com/stock-predictions-with-state-of-the-art-transformer-and-time-embeddings-3a4485237de6
-
-
-The model was written in a general fashion: we set all of his layers size, aswell as the mentioned `bptt` and `batch_size` as variables and proceeded to use [Optuna](https://github.com/optuna/optuna) to optimize over the validation loss.
-
-This loss, aswell as the training loss, was defined as the MSE between the LSTM's prediction of a minute and the closing price of the next minute, which is of course what we're trying to predict.
-
-### Based on the paper "Combining Sketch and Tone for Pencil Drawing Production" by Cewu Lu, Li Xu, Jiaya Jia
-#### International Symposium on Non-Photorealistic Animation and Rendering (NPAR 2012), June 2012
-Project site can be found here:
-http://www.cse.cuhk.edu.hk/leojia/projects/pencilsketch/pencil_drawing.htm
-
-Paper PDF - http://www.cse.cuhk.edu.hk/leojia/projects/pencilsketch/npar12_pencil.pdf
-
-Draws inspiration from the Matlab implementation by "candtcat1992" - https://github.com/candycat1992/PencilDrawing
-
-In this notebook, we will explain and implement the algorithm described in the paper. This is what we are trying to achieve:
-![alt text](https://github.com/taldatech/image2pencil-drawing/blob/master/images/ExampleResult.JPG)
-
-We can divide the workflow into 2 main steps:
-1. Pencil stroke generation (captures the general strucure of the scene)
-2. Pencil tone drawing (captures shapes shadows and shading)
-
-Combining the results from these steps should yield the desired result. The workflow can be depicted as follows:
-![alt text](https://github.com/taldatech/image2pencil-drawing/blob/master/images/Workflow.JPG)
-
-* Both figures were taken from the original paper
-
-Another example:
-![alt text](https://github.com/taldatech/image2pencil-drawing/blob/master/images/jl_compare.JPG)
 
 # Usage
-```python
-from PencilDrawingBySketchAndTone import *
-import matplotlib.pyplot as plt
-ex_img = io.imread('./inputs/11--128.jpg')
-pencil_tex = './pencils/pencil1.jpg'
-ex_im_pen = gen_pencil_drawing(ex_img, kernel_size=8, stroke_width=0, num_of_directions=8, smooth_kernel="gauss",
-                       gradient_method=0, rgb=True, w_group=2, pencil_texture_path=pencil_tex,
-                       stroke_darkness= 2,tone_darkness=1.5)
-plt.rcParams['figure.figsize'] = [16,10]
-plt.imshow(ex_im_pen)
-plt.axis("off")
-```
+
+To retrain the model run [bitcoin_price_prediction.ipynb](https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/data/bitcoin_price_prediction.ipynb) after you chose your hyperparameters in the first cell. The flag `plot_data_process` when set False will hide all the produced data processing image.
+
+If you would like to do further hyperparameters tuning using optuna run [bitcoin_price_prediction_optuna.ipynb](https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/data/bitcoin_price_prediction_optuna.ipynb)
+First, anyone who'd like is welcome to just run the `Model Training - CGEN.ipynb` to retrain the model, or run `stock_bot.py` to run the bot and/or edit it.
+
 # Parameters
 * kernel_size = size of the line segement kernel (usually 1/30 of the height/width of the original image)
 * stroke_width = thickness of the strokes in the Stroke Map (0, 1, 2)
