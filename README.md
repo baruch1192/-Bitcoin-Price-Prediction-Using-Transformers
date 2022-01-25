@@ -69,7 +69,7 @@ The model structure:
 </p>
 
 
-# Parameters
+## Parameters
 * `num_features` = int, number of features to choose from the full set (1 - 34)
 * `scaler` = str, the kind of scaler to use to scale the data (Standard Scaler - 'standard', Min Max Scaler - 'minmax')
 * `train_batch_size` = int, size of train batch
@@ -169,7 +169,7 @@ We can see that the general trend of the prediction is similar to the real one. 
 Here we can see the differences between the real and predicted values. The trends are still somewhat similiar but sometimes the predidtion predicts a rise or fall before it happens, for example the rise around the minute 42,560 or the little fall in minute 42,580, and sometimes it just follows the existing trend like around minute 42,600.
 
 
-# Usage
+## Usage
 
 To retrain the model run [bitcoin_price_prediction.ipynb](https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/data/bitcoin_price_prediction.ipynb) after you chose your hyperparameters in the first cell. The flag `plot_data_process` when set False will hide all the produced data processing image.
 
