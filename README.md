@@ -72,7 +72,7 @@ The model structure:
 </p>
 
 
-## Parameters
+## Hyperparameters
 * `num_features` = int, number of features to choose from the full set (1 - 34)
 * `scaler` = str, the kind of scaler to use to scale the data (Standard Scaler - 'standard', Min Max Scaler - 'minmax')
 * `train_batch_size` = int, size of train batch
