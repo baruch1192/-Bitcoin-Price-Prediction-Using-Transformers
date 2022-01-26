@@ -157,7 +157,7 @@ Model statistics:
 * Validation Loss: <img src="https://render.githubusercontent.com/render/math?math=6.1\cdot10^{-5}">
 * Test Loss: <img src="https://render.githubusercontent.com/render/math?math=10.1\cdot10^{-5}">
 
-After this training we checked the real-time performance  of the model on the test set, meaning we entered the first 10 samples as source (`bptt_src` = 10), the 10th sample in this sequence as target (`overlap` = 1) predicted the next value (`bptt_tgt` - `overlap` = 1). We then shifted the source samples by one and predicted the next value in the same way. We repeated the process until we had the prediction for all the possible minutes in the test set. You can see the result here:
+After this training we checked the real-time performance of the model on the test set, meaning we entered the first 10 samples as source (`bptt_src` = 10), the 10th sample in this sequence as target (`overlap` = 1) and predicted the next value (`bptt_tgt` - `overlap` = 1). We then shifted the source samples by one and predicted the next value in the same way. We repeated the process until we had the prediction for all the possible minutes in the test set. You can see the result here:
 
 <p align="center">
   <img src="https://github.com/baruch1192/-Bitcoin-Price-Prediction-Using-Transformers/blob/main/images/Test_Prediction.png" />
@@ -197,9 +197,9 @@ If you would like to do further hyperparameters tuning using optuna run [bitcoin
 
 ## Further Work
 
-The work we presented here achieved good results, but of definitely there are aspects to improve and examine such as:
+The work we presented here achieved good results, but definitely there are aspects to improve and examine such as:
 - Try running the model on a different stock.
-- Examine  the feature extraction process and check which features are the most helpful.
+- Examine the feature extraction process and check which features are the most helpful.
 - Further tuning of the hyperparameters, release the constraints we put on some of them.
 - Check the performance in real-time trading (better to start with a trading bot on the test set)
 
