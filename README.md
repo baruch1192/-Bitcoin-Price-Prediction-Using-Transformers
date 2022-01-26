@@ -14,7 +14,7 @@ Watch on Youtube:  <a href="https://youtu.be/tb_47ng7ZOI"><img src="https://img.
  
 - [Bitcoin Price Prediction Using Transformers](#Bitcoin-Price-Prediction-Using-Transformers)
   * [Previous Work](#Previous-Work)
-  * [Data Proccessing](#Data-Proccessing)
+  * [Data Processing](#Data-Processing)
   * [Architecture](#Architecture)
   * [Hyperparameters](#Hyperparameters)
   * [Optuna](#Optuna)
